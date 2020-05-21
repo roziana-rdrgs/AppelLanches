@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Operacao extends Model
 {
     use SoftDeletes;
-    private $table= 'operacoes';
+    protected $table= 'operacoes';
     /**
      * The attributes that are mass assignable.
      *

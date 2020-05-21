@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Operacao;
 use  Illuminate\Http\Request;
 
-class Movimentos extends BaseController
+class Operacoes extends BaseController
 {
     public $classe = Operacao::class;
 
     public function create(Request $request)
     {
         try {
-            $responseMovimento = parent::create($request);
+            $responseOperacoes = parent::create($request);
             /* controle de saldo e movimentos aqui  */
-            return $responseMovimento;
+            return $responseOperacoes;
 
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             parent::tratarErro($th);
         }
     }
