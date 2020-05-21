@@ -1,7 +1,5 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -15,4 +13,25 @@
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
+});
+
+$router->group(['prefix' => '/api'], function () use ($router) {
+
+    $router->group(['prefix' => '/pessoas'], function () use ($router) {
+        $controller = 'Pessoas';
+        $router->post('', $controller . '@create');
+        $router->get('', $controller . '@index');
+        $router->get('{id}', $controller . '@show');
+        $router->put('{id}', $controller . '@update');
+        $router->delete('{id}', $controller . '@delete');
+    });
+
+    $router->group(['prefix' => '/operacoes'], function () use ($router) {
+        $controller = 'Operacoes';
+        $router->post('', $controller . '@create');
+        $router->get('', $controller . '@index');
+        $router->get('{id}', $controller . '@show');
+        $router->put('{id}', $controller . '@update');
+        $router->delete('{id}', $controller . '@delete');
+    });
 });

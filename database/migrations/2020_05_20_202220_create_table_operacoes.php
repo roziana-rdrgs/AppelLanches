@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,19 +13,18 @@ class CreateTableOperacoes extends Migration
      */
     public function up()
     {
-        /**pessoaId, valor, flagtipo, data_operacao, histórico */
         Schema::create('operacoes', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('pessoa_id', false, false)->nullable();
-            $table->double('valor', 15, 2, true)->nullable()->default(123.4567);
-            $table->date('data_operacao')->default(new DateTime());
+            $table->bigInteger('pessoa_id', false, true)->nullable();
+            $table->double('valor', 15, 2, true);
+            $table->date('data_operacao');
             $table->string('historico', 100);
             $table->tinyInteger('flag_tipo');
             $table->timestamps();
             $table->softDeletes();
 
 
-            $table->foreign('pessoa_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('pessoa_id')->references('id')->on('pessoas')->onDelete('restrict');
         });
     }
 

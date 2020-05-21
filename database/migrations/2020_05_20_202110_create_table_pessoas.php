@@ -12,7 +12,6 @@ class CreateTablePessoas extends Migration
      * @return void
      */
     public function up()
-    /* nome, senha, saldo */
     {
         Schema::create('pessoas', function (Blueprint $table) {
             $table->id();
